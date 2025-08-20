@@ -17,12 +17,14 @@
         <div class="mb-3 p-2 border rounded">
           
           <div class="d-flex justify-content-between align-items-center">
-            <span>{{ task.content }}</span>
+            <span>{{ task.content }}
             {% if task.is_done %}
+            <strong> Done</strong></span>
             <a class="btn btn-sm btn-secondary" href="{% url 'todo-list:change-state' task.pk %}">
               Undo
             </a>
             {% else %}
+            <strong> Not Done</strong></span>
             <a class="btn btn-sm btn-primary" href="{% url 'todo-list:change-state' task.pk %}">
               Complete
             </a>
