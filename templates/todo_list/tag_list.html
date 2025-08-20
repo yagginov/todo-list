@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <h1>Tags</h1>
+  </div>
+  
+  {% if tag_list %}
+    <div class="table-responsive">
+      <table class="table table-striped align-middle">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for tag in tag_list %}
+            <tr>
+              <td>{{ tag.name }}</td>
+              <td>
+                <a class="btn btn-primary btn-sm" href="{% url 'todo-list:tag-update' tag.pk %}">
+                  <i class="bi bi-arrow-through-heart-fill"></i> Update
+                </a>
+              </td>
+              <td>
+                <a class="btn btn-danger btn-sm" href="{% url 'todo-list:tag-delete' tag.pk %}">
+                  <i class="bi bi-trash-fill"></i> Delete
+                </a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  
+  {% else %}
+
+    <div class="row">
+      <h3>There are no tags available.</h3>
+    </div>
+
+  {% endif %}
+</div>
+
+{% endblock %}

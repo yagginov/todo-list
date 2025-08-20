@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <h1>TODO list</h1>
+  </div>
+  
+  {% if task_list %}
+    {% for task in task_list %}
+      <div class="row">
+        <div class="col">
+          {{ task.content }}
+        </div>
+        <div class="col align-self-end">
+          button
+        </div>
+      </div>
+      <div class="row">
+        <div class="col align-self-start">
+          {{ task.created_at }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col align-self-start">
+          Tags: 
+          {% if task.tags.all %}
+            {% for tag in task.tags.all %}
+              <p class="tag">{{ tag.name }}</p>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  
+  {% else %}
+
+    <div class="row">
+      <h3>There are no tasks available.</h3>
+    </div>
+
+  {% endif %}
+</div>
+
+{% endblock %}
