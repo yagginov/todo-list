@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 
 class Tag(models.Model):
@@ -19,10 +20,13 @@ class Task(models.Model):
         ordering = ("is_done", "-created_at")
 
     def get_date(self) -> str:
-        created = self.created_at.strftime("%B %d, %Y, %I:%M %p")
+        created_at = timezone.localtime(self.created_at)
+        deadline = timezone.localtime(self.deadline) if self.deadline else None
+
+        created = created_at.strftime("%B %d, %Y, %I:%M %p")
         deadline = (
-            f" | Deadline: {self.deadline:%B %d, %Y, %I:%M %p}"
-            if self.deadline else ""
+            f" | Deadline: {deadline:%B %d, %Y, %I:%M %p}"
+            if deadline else ""
         )
         return f"Created: {created}{deadline}"
 
