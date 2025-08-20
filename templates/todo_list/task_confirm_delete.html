@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Delete task?</h1>
+  <span class="mb-3 d-block"><strong>Task:</strong> {{object.content}}</span>
+  <form action="" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Yes" class="btn btn-danger">
+    <a href="javascript:history.back()" class="btn btn-secondary ms-2">Cancel</a>
+  </form>
+{% endblock %}
