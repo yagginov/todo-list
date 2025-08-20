@@ -18,5 +18,10 @@ class Task(models.Model):
     class Meta:
         ordering = ("is_done", "-created_at")
 
+    def get_date(self) -> str:
+        created = self.created_at.strftime("%B %d, %Y, %I:%M %p")
+        deadline = f" | Deadline: {self.deadline:%B %d, %Y, %I:%M %p}" if self.deadline else ""
+        return f"Created: {created}{deadline}"
+
     def __str__(self) -> str:
         return self.content
