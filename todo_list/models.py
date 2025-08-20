@@ -24,10 +24,7 @@ class Task(models.Model):
         deadline = timezone.localtime(self.deadline) if self.deadline else None
 
         created = created_at.strftime("%B %d, %Y, %I:%M %p")
-        deadline = (
-            f" | Deadline: {deadline:%B %d, %Y, %I:%M %p}"
-            if deadline else ""
-        )
+        deadline = f" | Deadline: {deadline:%B %d, %Y, %I:%M %p}" if deadline else ""
         return f"Created: {created}{deadline}"
 
     def __str__(self) -> str:

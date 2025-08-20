@@ -31,11 +31,7 @@ class TagListView(generic.ListView):
 
 class ChangeStateView(generic.View):
     def get(
-        self,
-        request: HttpRequest,
-        pk: int,
-        *args,
-        **kwargs
+        self, request: HttpRequest, pk: int, *args, **kwargs
     ) -> HttpResponseRedirect:
         task = get_object_or_404(Task, pk=pk)
         task.is_done ^= True

@@ -6,15 +6,10 @@ from todo_list.models import Task, Tag
 
 class TaskForm(forms.ModelForm):
     deadline = forms.DateTimeField(
-        required=False,
-        widget=forms.DateTimeInput(
-            attrs={"type": "datetime-local"}
-        )
+        required=False, widget=forms.DateTimeInput(attrs={"type": "datetime-local"})
     )
     tags = forms.ModelMultipleChoiceField(
-        required=False,
-        queryset=Tag.objects.all(),
-        widget=forms.CheckboxSelectMultiple
+        required=False, queryset=Tag.objects.all(), widget=forms.CheckboxSelectMultiple
     )
 
     def clean_deadline(self):
@@ -25,18 +20,20 @@ class TaskForm(forms.ModelForm):
 
     class Meta:
         model = Task
-        fields = ("content", "deadline", "tags", )
+        fields = (
+            "content",
+            "deadline",
+            "tags",
+        )
 
 
 class TagForm(forms.ModelForm):
     class Meta:
         model = Tag
-        fields = ("name", )
+        fields = ("name",)
 
 
 class FilterTaskForm(forms.Form):
     tags = forms.ModelMultipleChoiceField(
-        required=False,
-        queryset=Tag.objects.all(),
-        widget=forms.CheckboxSelectMultiple
+        required=False, queryset=Tag.objects.all(), widget=forms.CheckboxSelectMultiple
     )
