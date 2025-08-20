@@ -32,3 +32,11 @@ class TagForm(forms.ModelForm):
     class Meta:
         model = Tag
         fields = ("name", )
+
+
+class FilterTaskForm(forms.Form):
+    tags = forms.ModelMultipleChoiceField(
+        required=False,
+        queryset=Tag.objects.all(),
+        widget=forms.CheckboxSelectMultiple
+    )
